@@ -3,7 +3,7 @@ import { resolve, dirname } from "path"
 
 const [bin, entry] = process.argv
 
-export const PROJECT_ROOT = resolve(dirname(entry), "../")
+export const PROJECT_ROOT = resolve(dirname(entry), "../../")
 
 export const PROJECT_VAR = resolve(PROJECT_ROOT, "var")
 
