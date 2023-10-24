@@ -17,7 +17,7 @@ displayHelp() {
 }
 
 runBuildLocal() {
-    rm -rf src/.vuepress/.temp && vuepress build src --debug
+    rm -rf src/.vuepress/.temp && vuepress build src
 }
 
 runBuildDeployPre() {
@@ -29,7 +29,7 @@ runBuildDeployAft() {
 }
 
 runDev() {
-    vuepress dev src --debug
+    vuepress dev src
 }
 
 runDeploy() {
