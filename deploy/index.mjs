@@ -34,7 +34,7 @@ console.log(`
 ─────────────────────────────────────────────
 Building the project
 `.trim())
-await spawn("npm", "run", "build-deploy")
+await spawn("npm", "run", "command", "--", "build-deploy")
 
 // Write distribution info into the dist folder
 console.log(`
