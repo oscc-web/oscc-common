@@ -21,11 +21,12 @@ runBuildLocal() {
 }
 
 runBuildDeployPre() {
-    mkdir -p var && rm -rf var/dist
+    mkdir -p var
 }
 
 runBuildDeployAft() {
-    cp -rv src/.vuepress/dist/ var/ && rm -rf var/dist/res/.git
+    rm -rf var/dist && cp -rv src/.vuepress/dist/ var/ &&
+    rm -rf var/dist/res/.git
 }
 
 runDev() {
