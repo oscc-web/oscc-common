@@ -51,7 +51,7 @@ runUpdateVP() {
 }
 
 runUpdateRepo() {
-    git pull && cd common && git pull
+    git pull
 }
 
 if [ "$1" = "--debug" ]; then
