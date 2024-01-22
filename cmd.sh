@@ -5,7 +5,6 @@ set -e
 displayHelp() {
     echo "Commands:"
     echo "help                 Help"
-    echo "setup                Setup repository"
     echo "build-local          Build website for local"
     echo "build-deploy-pre     Build website for deployment (pretreatment)"
     echo "build-deploy-aft     Build website for deployment (aftertreatment)"
@@ -14,7 +13,6 @@ displayHelp() {
     echo "deploy               Deploy website to remote server"
     echo "clean-dev            Clean cache and run website in development mode "
     echo "update-vp            Update vuepress version"
-    echo "update-repo          Update repository"
 }
 
 runSetup() {
@@ -65,9 +63,6 @@ case "$1" in
     "help")
         displayHelp
         ;;
-    "setup")
-        runSetup
-        ;;
     "build-local")
         runBuildLocal
         ;;
@@ -94,9 +89,6 @@ case "$1" in
         ;;
     "update-vp")
         runUpdateVP
-        ;;
-    "update-repo")
-        runUpdateRepo
         ;;
     *)
         echo "Unknown commands: "$1"" >&2
