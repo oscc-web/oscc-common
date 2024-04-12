@@ -20,9 +20,7 @@ runSetup() {
 }
 
 runBuildLocal() {
-    rm -rf src/.vuepress/.temp && vuepress build src &&
-    mkdir src/.vuepress/dist/js &&
-    cp -rv src/.vuepress/js/* src/.vuepress/dist/js
+    rm -rf src/.vuepress/.temp && vuepress build src
 }
 
 runBuildDeployPre() {
