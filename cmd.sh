@@ -6,8 +6,6 @@ displayHelp() {
     echo "Commands:"
     echo "help                 Help"
     echo "build-local          Build website for local"
-    echo "build-deploy-pre     Build website for deployment (pretreatment)"
-    echo "build-deploy-aft     Build website for deployment (aftertreatment)"
     echo "build-deploy         Build website for deployment"
     echo "dev                  Run website in development mode"
     echo "deploy               Deploy website to remote server"
@@ -29,7 +27,13 @@ runBuildDeployPre() {
 
 runBuildDeployAft() {
     rm -rf var/dist && cp -rv src/.vuepress/dist/ var/ &&
-    rm -rf var/dist/res/.git
+    rm -rf var/dist/res/.git &&
+    if grep -q "imagemin" package.json; then
+        echo -e "\nOptimizing images..."
+        node ./common/opt/imagemin.js
+    else
+        echo -e ""
+    fi
 }
 
 runDev() {
@@ -65,13 +69,6 @@ case "$1" in
         ;;
     "build-local")
         runBuildLocal
-        ;;
-    "build-deploy-pre")
-        runBuildDeployPre
-        exit 0
-        ;;
-    "build-deploy-aft")
-        runBuildDeployAft
         ;;
     "build-deploy")
         runBuildDeployPre
