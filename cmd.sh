@@ -18,7 +18,9 @@ runSetup() {
 }
 
 runBuildLocal() {
-    rm -rf src/.vuepress/.temp && vuepress build src
+    if [ -e mkdocs.yml ]; then
+        rm -rf site && make build
+    fi
 }
 
 runBuildDeployPre() {
@@ -26,8 +28,13 @@ runBuildDeployPre() {
 }
 
 runBuildDeployAft() {
-    rm -rf var/dist && cp -rv src/.vuepress/dist/ var/ &&
-    rm -rf var/dist/res/.git &&
+    if [ -e mkdocs.yml ]; then
+        rm -rf var/dist && mkdir var/dist && cp -rv site/* var/dist
+    else
+        rm -rf var/dist && cp -rv src/.vuepress/dist/ var/ &&
+        rm -rf var/dist/res/.git
+    fi
+
     if grep -q "imagemin" package.json; then
         echo -e "\nOptimizing images..."
         node ./common/opt/imagemin.js
@@ -37,7 +44,11 @@ runBuildDeployAft() {
 }
 
 runDev() {
-    vuepress dev src
+    if [ -e mkdocs.yml ]; then
+        make serve
+    else
+        vuepress dev src
+    fi
 }
 
 runDeploy() {
