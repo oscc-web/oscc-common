@@ -20,6 +20,8 @@ runSetup() {
 runBuildLocal() {
     if [ -e mkdocs.yml ]; then
         rm -rf site && make build
+    else
+        rm -rf src/.vuepress/.temp && vuepress build src
     fi
 }
 
